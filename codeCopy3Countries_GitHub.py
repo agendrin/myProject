@@ -43,43 +43,7 @@ for partition in mesPartitions:
 os.chdir('..')	
 	
 
-
-
-
-#First attempt to read the two fields of interest and store them in lists
-#country = []
-#adverseEvent = []
-#os.chdir('data')
-#for partition in mesPartitions:
-#	url = partition['file']
-#	file_name = url.split('/')[-1]
-#	dir_name = url.split('/')[-2]
-#	os.chdir(dir_name)
-#	with open(file_name[0:-4],'r') as f:
-#		mesData = json.load(f)
-#		mesResults = mesData['results']
-#		for i in range(len(mesResults)):
-#			try:
-#				country.append(mesResults[i]['primarysource']['reportercountry'])
-#				print(country[-1])
-#			except (KeyError, TypeError):
-#				country.append(float('nan'))				
-#			try: 
-#				adverseEvent.append(mesResults[i]['patient']['reaction'][0]['reactionmeddrapt'])
-#				print(adverseEvent[-1])
-#			except (KeyError, TypeError):
-#				adverseEvent.append(float('nan'))
-#						
-#	os.chdir('..')
-#
-#os.chdir('..')
-	
-
-
-
-
-
-#I download the fields needed to answer question 1. 
+#I save the fields needed to answer question 1 from the document provided. 
 #I planned to make use of safetyreportid, safetyreportversion, companynumb, but I did not have time in the end.
 #It needs to be done in a more finalised version
 #There are several reaction (reactionmeddrapt) fields per record, and we create one separate line for each in the output file
@@ -668,7 +632,7 @@ print("accuracy = %.3f, precision = %.3f, recall = %.3f, f1 = %.3f" % (accuracy_
 
 cm_w2v = confusion_matrix(y_test_word2vec, y_predicted_word2vec)
 fig = plt.figure(figsize=(10, 10))
-plot = plot_confusion_matrix(cm, classes=['France','UK'], normalize=False, title='Confusion matrix')
+plot = plot_confusion_matrix(cm_w2v, classes=['France','UK','Japan'], normalize=False, title='Confusion matrix')
 plt.show()
 print("Word2Vec confusion matrix")
 print(cm_w2v)
